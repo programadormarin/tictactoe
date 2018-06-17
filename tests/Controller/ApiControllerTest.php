@@ -4,7 +4,7 @@ namespace Hmarinjr\TicTacToe\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Hmarinjr\TicTacToe\Controller\ApiController;
-use Hmarinjr\TicTacToe\Exception\InvalidRequestException;
+use Hmarinjr\TicTacToe\Exception\InvalidBoardtException;
 use Hmarinjr\TicTacToe\Service\MoveInterface;
 
 /**
@@ -16,13 +16,12 @@ use Hmarinjr\TicTacToe\Service\MoveInterface;
 class ApiControllerTest extends WebTestCase
 {
     /**
+     * @test
      * @dataProvider validRequestProvider
      *
      * @param array $requestContent
-     *
-     * @throws InvalidRequestException
      */
-    public function testApiController(array $requestContent)
+    public function apiController(array $requestContent)
     {
         $request = $this->createMock("Symfony\Component\HttpFoundation\Request");
         $container = $this->createMock("Symfony\Component\DependencyInjection\ContainerInterface");
@@ -38,12 +37,14 @@ class ApiControllerTest extends WebTestCase
     }
 
     /**
+     * @test
      * @dataProvider validRequestProvider
-     * @param array $invalidRequestContent
+     * 
+     * @param array $validRequestContent
      */
-    public function testMakeMove(array $invalidRequestContent): void
+    public function makeMove(array $validRequestContent): void
     {
-        $requestContent = json_encode($invalidRequestContent);
+        $requestContent = json_encode($validRequestContent);
 
         $client = static::createClient();
         $client->request('POST', '/api/move', [], [], [], $requestContent);
@@ -51,22 +52,7 @@ class ApiControllerTest extends WebTestCase
         $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
 
         $contentBody = json_decode($client->getResponse()->getContent(), true);
-        $this->assertArrayHasKey('nextMove', $contentBody);
-    }
-
-    /**
-     * @dataProvider invalidRequestProvider
-     *
-     * @param array $invalidRequestContent
-     */
-    public function testInvalidMakeMove(array $invalidRequestContent): void
-    {
-        $invalidContent = json_encode($invalidRequestContent);
-
-        $client = static::createClient();
-        $client->request('POST', '/api/move', [], [], [], $invalidContent);
-        $this->assertSame(412, $client->getResponse()->getStatusCode());
-        $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
+        $this->assertArrayHasKey('winner', $contentBody);
     }
 
     public function validRequestProvider(): array
@@ -97,60 +83,11 @@ class ApiControllerTest extends WebTestCase
                         ["O", "X", "X"],
                     ],
                 ],[
-                "playerUnit" => "X",
-                "boardState" => [
-                    ["X", "O", "X"],
-                    ["O", "X", "O"],
-                    ["X", "O", "X"],
-                ],
-            ],
-            ],
-        ];
-    }
-
-    public function invalidRequestProvider(): array
-    {
-        return [
-            [
-                [
                     "playerUnit" => "X",
                     "boardState" => [
-                        ["X", "O"],
-                        ["X", "O", "O"],
-                        ["O", "X", "X"],
-                    ],
-                ],
-                [
-                    "playerUnit" => "Y",
-                    "boardState" => [
-                        ["X", "O"],
-                        ["X", "O", "O"],
-                        ["O", "X", "X"],
-                    ],
-                ],
-                [
-                    "playerUnit" => "X",
-                    "boardState" => [
-                        ["X", "O", "Z"],
-                        ["X", "O", "O"],
-                        ["O", "X", "X"],
-                    ],
-                ],
-                [
-                    "playerUnit" => "X",
-                    "boardState" => [
-                        ["X", "O", "Z"],
-                        ["O", "X", "X"],
-                    ],
-                ],
-                [
-                    "playerUnit" => "X",
-                ],
-                [
-                    "boardState" => [
-                        ["X", "O"],
-                        ["X", "O", "O"],
-                        ["O", "X", "X"],
+                        ["X", "O", "X"],
+                        ["O", "X", "O"],
+                        ["X", "O", "X"],
                     ],
                 ],
             ],

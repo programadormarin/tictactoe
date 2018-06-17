@@ -11,10 +11,10 @@ namespace Hmarinjr\TicTacToe\Exception;
 class InvalidBoardException extends \Exception
 {
     /**
-     * EmptyAvailableMovesException constructor.
+     * @var $message
      */
-    public function __construct()
+    public function __construct($message)
     {
-        parent::__construct("No more empty moves on board!", 500);
+        parent::__construct($message, 412);
     }
 }

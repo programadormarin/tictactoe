@@ -29,7 +29,6 @@ class ApiController extends Controller
      * @param Request $request
      *
      * @return JsonResponse
-     * @throws InvalidRequestException
      */
     public function moveAction(MoveInterface $move, Request $request): JsonResponse
     {

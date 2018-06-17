@@ -15,7 +15,7 @@ class BoardValidator
      * @return bool
      * @throws InvalidBoardException
      */
-    public function isValid($content): bool
+    public function isValid($content): void
     {
         if (empty($content)) {
             throw new InvalidBoardException("Invalid request. Empty body or invalid json.");
@@ -39,7 +39,5 @@ class BoardValidator
                 throw new InvalidBoardException("The game must contain only 'X', 'O' or empty moves.");
             }
         }
-    
-        return true;
     }
 }

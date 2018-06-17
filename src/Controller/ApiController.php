@@ -38,8 +38,15 @@ class ApiController extends Controller
         $validator = new BoardValidator();        
         $validator->isValid($movement);
 
-        $response = ['nextMove' => $move->makeMove($movement['boardState'], $movement['playerUnit'])];
+        $gameStatus = new GameStatus($movement['boardState'], $movement['playerUnit']);
 
+        if (!empty($gameStatus->getWinner())) {
+            $response['winner'] = $gameStatus->getWinner();
+            return new JsonResponse($response, 200);
+        }
+
+        $response = ['nextMove' => $move->makeMove($movement['boardState'], $movement['playerUnit'])];
+        
         if (!empty($response['nextMove'][1])) {
             $movement['boardState'][$response['nextMove'][0]][$response['nextMove'][1]] = $response['nextMove'][2];
         }
@@ -48,10 +55,7 @@ class ApiController extends Controller
 
         if ($gameStatus->isTied()) {
             $response['tied'] = $gameStatus->isTied();
-        } elseif (!empty($gameStatus->getWinner())) {
-            $response['winner'] = $gameStatus->getWinner();
         }
-
 
         return new JsonResponse($response, 200);
     }

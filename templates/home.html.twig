@@ -15,11 +15,11 @@
                 <h3>Select your peice before start the game.</h3>
                 <div class="row highlight">
                     <div class="col"></div>
-                    <div class="col-3 piece" data-piece="X">
-                        <button class="btn btn-block btn-success btn-lg"><strong>X</strong></button>
+                    <div class="col-3 piece">
+                        <button class="btn btn-block btn-success btn-lg" data-piece="X">X</button>
                     </div>
-                    <div class="col-3 piece" data-piece="O">
-                        <button class="btn btn-block btn-primary btn-lg"><strong>O</strong></button>
+                    <div class="col-3 piece">
+                        <button class="btn btn-block btn-primary btn-lg" data-piece="O">O</button>
                     </div>
                     <div class="col"></div>
                 </div>
@@ -27,11 +27,11 @@
         </header>
 
         <main role="main" class="inner cover">
-            <div class="container" id="table" style="display: none">
+            <div class="container" id="table" style="display: none" data-player-piece="">
                 <div class="row">
-                    <div class="col-4 tictactoe-cel" data-x="0" data-y="2" data-piece=""></div>
-                    <div class="col-4 tictactoe-cel" data-x="1" data-y="2" data-piece=""></div>
-                    <div class="col-4 tictactoe-cel" data-x="2" data-y="2" data-piece=""></div>
+                    <div class="col-4 tictactoe-cel" data-x="0" data-y="0" data-piece=""></div>
+                    <div class="col-4 tictactoe-cel" data-x="1" data-y="0" data-piece=""></div>
+                    <div class="col-4 tictactoe-cel" data-x="2" data-y="0" data-piece=""></div>
                 </div>
                 <div class="row">
                     <div class="col-4 tictactoe-cel" data-x="0" data-y="1" data-piece=""></div>
@@ -39,11 +39,11 @@
                     <div class="col-4 tictactoe-cel" data-x="2" data-y="1" data-piece=""></div>
                 </div>
                 <div class="row">
-                    <div class="col-4 tictactoe-cel" data-x="0" data-y="0" data-piece=""></div>
-                    <div class="col-4 tictactoe-cel" data-x="1" data-y="0" data-piece=""></div>
-                    <div class="col-4 tictactoe-cel" data-x="2" data-y="0" data-piece=""></div>
+                    <div class="col-4 tictactoe-cel" data-x="0" data-y="2" data-piece=""></div>
+                    <div class="col-4 tictactoe-cel" data-x="1" data-y="2" data-piece=""></div>
+                    <div class="col-4 tictactoe-cel" data-x="2" data-y="2" data-piece=""></div>
                 </div>
-                <a href="/" class="btn btn-block btn-info btn-lg"><strong>RESET THE GAME</strong></a>
+                <a href="/" class="btn btn-block btn-info btn-lg"><strong>RESET GAME</strong></a>
             </div>
         </main>
     </div>

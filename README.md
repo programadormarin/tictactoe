@@ -1,9 +1,9 @@
 Tic Tac Toe Game
 ==========================
 
-[![Build Status](https://travis-ci.org/hmarinjr/tictactoe.svg?branch=master)](https://travis-ci.org/hmarinjr/tictactoe)
-[![Maintainability](https://api.codeclimate.com/v1/badges/e75b4c5401873f2f87f0/maintainability)](https://codeclimate.com/github/hmarinjr/tictactoe/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/e75b4c5401873f2f87f0/test_coverage)](https://codeclimate.com/github/hmarinjr/tictactoe/test_coverage)
+[![Build Status](https://travis-ci.org/programadormarin/tictactoe.svg?branch=master)](https://travis-ci.org/programadormarin/tictactoe)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e75b4c5401873f2f87f0/maintainability)](https://codeclimate.com/github/programadormarin/tictactoe/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/e75b4c5401873f2f87f0/test_coverage)](https://codeclimate.com/github/programadormarin/tictactoe/test_coverage)
 
 This is a Tic Tac Toe game built in PHP 7 with Symfony 4!
 
@@ -17,7 +17,7 @@ This is a Tic Tac Toe game built in PHP 7 with Symfony 4!
 Clone this repository using HTTPS or SSH
 
 ```bash
-$ git clone git@github.com:hmarinjr/tictactoe.git
+$ git clone git@github.com:programadormarin/tictactoe.git
 ```
 
 Install all the backend dependencies using composer

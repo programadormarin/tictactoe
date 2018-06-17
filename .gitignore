@@ -1,0 +1,17 @@
+
+.env
+/public/bundles/
+/var/
+/vendor/
+.web-server-pid
+.phpunit
+/phpunit.xml
+.vscode
+build
+
+###> symfony/webpack-encore-pack ###
+/node_modules/
+/%PUBLIC_DIR%/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-pack ###

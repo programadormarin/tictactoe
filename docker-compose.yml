@@ -1,0 +1,45 @@
+version: '3.5'
+
+services:
+  php:
+    container_name: php
+    build: .
+    volumes:
+      - .:/var/www/html
+    expose:
+      - "9000"
+  composer:
+    container_name: composer
+    image: composer
+    user: "1000"
+    volumes:
+        - .:/app
+    command: install -o
+    depends_on:
+        - php
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - php
+  js: &js
+    container_name: node
+    build:
+      context: .
+      dockerfile: Node.Dockerfile
+    volumes:
+      - .:/gb:rw
+    working_dir: /gb
+  yarn:
+    <<: *js
+    container_name: yarn
+    entrypoint: ["yarn"]
+  npm:
+    <<: *js
+    container_name: npm
+    entrypoint: ["npm"]

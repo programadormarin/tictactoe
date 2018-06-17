@@ -1,0 +1,20 @@
+parameters:
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Hmarinjr\TicTacToe\:
+        resource: '../src/*'
+        exclude: '../src/{Entity,Migrations,Tests}'
+
+    Hmarinjr\TicTacToe\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    Hmarinjr\TicTacToe\EventListener\ExceptionSubscriber:
+        class: Hmarinjr\TicTacToe\EventListener\ExceptionSubscriber
+        arguments: []
+        tags:
+            - { name: kernel.event_subscriber }

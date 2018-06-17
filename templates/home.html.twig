@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="{{ asset('assets/app.css') }}">
+</head>
+<body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner">
+                <h1 class="cover-heading">Tic Tac Toe</h1>
+                <h3>Select your peice before start the game.</h3>
+                <div class="row highlight">
+                    <div class="col"></div>
+                    <div class="col-3 piece" data-piece="X">
+                        <button class="btn btn-block btn-success btn-lg"><strong>X</strong></button>
+                    </div>
+                    <div class="col-3 piece" data-piece="O">
+                        <button class="btn btn-block btn-primary btn-lg"><strong>O</strong></button>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+        </header>
+
+        <main role="main" class="inner cover">
+            <div class="container" id="table" style="display: none">
+                <div class="row">
+                    <div class="col-4 tictactoe-cel" data-x="0" data-y="2" data-piece=""></div>
+                    <div class="col-4 tictactoe-cel" data-x="1" data-y="2" data-piece=""></div>
+                    <div class="col-4 tictactoe-cel" data-x="2" data-y="2" data-piece=""></div>
+                </div>
+                <div class="row">
+                    <div class="col-4 tictactoe-cel" data-x="0" data-y="1" data-piece=""></div>
+                    <div class="col-4 tictactoe-cel" data-x="1" data-y="1" data-piece=""></div>
+                    <div class="col-4 tictactoe-cel" data-x="2" data-y="1" data-piece=""></div>
+                </div>
+                <div class="row">
+                    <div class="col-4 tictactoe-cel" data-x="0" data-y="0" data-piece=""></div>
+                    <div class="col-4 tictactoe-cel" data-x="1" data-y="0" data-piece=""></div>
+                    <div class="col-4 tictactoe-cel" data-x="2" data-y="0" data-piece=""></div>
+                </div>
+                <a href="/" class="btn btn-block btn-info btn-lg"><strong>RESET THE GAME</strong></a>
+            </div>
+        </main>
+    </div>
+    <script src="{{ asset('assets/app.js') }}"></script>
+    <span id="end"></span>
+</body>
+</html>

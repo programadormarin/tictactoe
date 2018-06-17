@@ -35,11 +35,12 @@ services:
     volumes:
       - .:/gb:rw
     working_dir: /gb
-  yarn:
-    <<: *js
-    container_name: yarn
-    entrypoint: ["yarn"]
   npm:
     <<: *js
     container_name: npm
     entrypoint: ["npm"]
+  yarn:
+    <<: *js
+    container_name: yarn
+    entrypoint: ["yarn"]
+    command: run encore dev

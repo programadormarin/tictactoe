@@ -1,6 +1,6 @@
 
 .env
-/public/bundles/
+/public/assets/
 /var/
 /vendor/
 .web-server-pid
@@ -11,7 +11,7 @@ build
 
 ###> symfony/webpack-encore-pack ###
 /node_modules/
-/%PUBLIC_DIR%/build/
+/%PUBLIC_DIR%/assets/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-pack ###

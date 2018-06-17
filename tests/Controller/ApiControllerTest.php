@@ -1,6 +1,6 @@
 <?php
 
-namespace Hmarinjr\TicTacToe\Tests\Controller;
+namespace Hmarinjr\TicTacToe\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Hmarinjr\TicTacToe\Controller\ApiController;

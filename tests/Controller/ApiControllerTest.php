@@ -8,8 +8,7 @@ use Hmarinjr\TicTacToe\Exception\InvalidBoardtException;
 use Hmarinjr\TicTacToe\Service\MoveInterface;
 
 /**
- * Class ApiControllerTest
- * @package Hmarinjr\TicTacToe\Tests\Controller
+ * @package Hmarinjr\TicTacToe\Controller
  *
  * @author Hermenegildo Marin Júnior <hmarinjr@gmail.com>
  */

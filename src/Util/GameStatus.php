@@ -14,25 +14,14 @@ class GameStatus
     private $board;
 
     /**
-     * @var string
-     */
-    private $playerPiece;
-
-    /**
-     * @var string
-     */
-    private $winner;
-
-    /**
      * GameStatus constructor.
      *
      * @param array $board
      * @param string $playerUnit
      */
-    public function __construct(array $board, $playerPiece)
+    public function __construct(array $board)
     {
         $this->board = $board;
-        $this->playerPiece = $playerPiece;
     }
 
     public function getWinner(): string
@@ -74,7 +63,9 @@ class GameStatus
 
         $openMove = false;
         $computerBoard = array_filter($this->board, function ($line) {
-            return !empty(array_filter($line));
+            return !empty(array_filter($line, function ($column) { 
+                return empty($column);
+            }));
         });
 
         return count($computerBoard) == 0;

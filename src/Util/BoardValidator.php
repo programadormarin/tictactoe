@@ -20,6 +20,10 @@ class BoardValidator
         if (empty($content)) {
             throw new InvalidBoardException("Invalid request. Empty body or invalid json.");
         }
+
+        if (!in_array($content['playerUnit'], ['X', 'O'])) {
+            throw new InvalidBoardException("The game must contain only 'X', 'O'.");
+        }
         
         $board = $content['boardState'];
         if (empty($board) || count($board) !== 3) {

@@ -3,9 +3,6 @@
 namespace Hmarinjr\TicTacToe\Exception;
 
 /**
- * Class EmptyAvailableMovesException
- * @package Hmarinjr\TicTacToe\Exception
- *
  * @author Hermenegildo Marin Júnior <hmarinjr@gmail.com>
  */
 class InvalidBoardException extends \Exception

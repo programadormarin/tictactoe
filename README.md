@@ -28,6 +28,14 @@ $ composer install
 
 # Run
 
+### Using Docker Compose
+
+If you don't have PHP running in your local machine, user Docker Compose to build this application.
+
+```bash
+$ docker-compose up --build -d
+```
+
 ### Using Symfony Server
 
 If you are using Symfony server component just run it by command: 
@@ -37,14 +45,6 @@ $ bin/console server:run
 ```
 
 Now just go to `http://localhost:8000` and enjoy!
-
-### Using Docker Compose
-
-If you don't have PHP running in your local machine, user Docker Compose to build this application.
-
-```bash
-$ docker-compose up --build -d
-```
 
 # Test
 
@@ -57,7 +57,7 @@ $ bin/phpunit
 If you are using docker for application and not running PHP on your local machine please run the following commmands:
 
 ```bash
-$ docker exec -it hmarinjr.tictactoe bin/phpunit
+$ docker exec -it tictactoe bin/phpunit
 ```
 
 # Usage

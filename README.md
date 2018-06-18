@@ -36,14 +36,6 @@ If you don't have PHP running in your local machine, user Docker Compose to buil
 $ docker-compose up --build -d
 ```
 
-### Using Symfony Server
-
-If you are using Symfony server component just run it by command: 
-
-```bash
-$ bin/console server:run
-```
-
 Now just go to `http://localhost:8000` and enjoy!
 
 # Test
@@ -57,7 +49,7 @@ $ bin/phpunit
 If you are using docker for application and not running PHP on your local machine please run the following commmands:
 
 ```bash
-$ docker exec -it tictactoe bin/phpunit
+$ docker-compose exec php ./bin/phpunit
 ```
 
 # Usage

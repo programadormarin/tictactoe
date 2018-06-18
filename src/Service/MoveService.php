@@ -22,6 +22,11 @@ class MoveService implements MoveInterface
     public function makeMove(array $boardState, string $playerUnit = 'X'): array
     {
         $moves = $this->getEmptyPositions($boardState);
+
+        if (!count($moves)) {
+            return [];
+        }
+
         shuffle($moves);
         $sortedMove = array_pop($moves);
         $arrayMove = explode('-', $sortedMove);

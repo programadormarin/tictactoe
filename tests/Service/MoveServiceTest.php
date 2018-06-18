@@ -24,6 +24,18 @@ class MoveServiceTest extends WebTestCase
         $this->assertEquals(3, count($move));
     }
 
+    /**
+     * @test
+     * @dataProvider fullBoardProvider
+     */
+    public function ifTheGameisOverHaveToReturnEmptyArray(array $board, string $playerUnit)
+    {
+        $service = new MoveService();
+        $move = $service->makeMove($board, $playerUnit);
+
+        $this->assertEmpty($move);
+    }
+
     public function validRequestProvider(): array
     {
         return [
@@ -73,6 +85,62 @@ class MoveServiceTest extends WebTestCase
                     ["", "", ""],
                     ["", "", ""],
                     ["", "", "X"]
+                ],
+                'X'
+            ]
+            
+        ];
+    }
+
+    public function fullBoardProvider(): array
+    {
+        return [
+            
+            [
+                [
+                    ["O", "O", "O"],
+                    ["X", "X", "O"],
+                    ["O", "X", "X"]
+                ],
+                'O'
+            ],
+            [
+                [
+                    ["X", "O", "X"],
+                    ["X", "O", "O"],
+                    ["O", "X", "X"]
+                ],
+                'O'
+            ],
+            [
+                [
+                    ["X", "O", "O"],
+                    ["O", "X", "O"],
+                    ["X", "X", "O"]
+                ],
+                'O'
+            ],
+            [
+                [
+                    ["X", "X", "O"],
+                    ["O", "O", "X"],
+                    ["X", "X", "X"]
+                ],
+                'X'
+            ],
+            [
+                [
+                    ["X", "O", "X"],
+                    ["X", "O", "X"],
+                    ["O", "X", "O"]
+                ],
+                'O'
+            ],
+            [
+                [
+                    ["X", "X", "O"],
+                    ["O", "O", "X"],
+                    ["X", "O", "X"]
                 ],
                 'X'
             ]

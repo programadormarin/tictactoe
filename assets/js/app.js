@@ -1,6 +1,8 @@
 require('../scss/app.scss');
 
 var $ = require('jquery');
+var winner = false;
+var tied = false;
 
 $(function() {
     $('#table').hide();
@@ -36,6 +38,10 @@ function selectPlayerPiece()
 function movement()
 {
     $('#table').on('click', '.tictactoe-cel', function () {
+        if (winner || tied || $(this).data('piece')) {
+            return;
+        }
+
         var x = $(this).data('x');
         var y = $(this).data('y');
         var playerPice = $('#table').data('player-piece');
@@ -50,21 +56,24 @@ function movement()
 function getComputerMove()
 {
     callMoveAPI().done(function (jsonResponse) {
-        if (jsonResponse.winner) {
-            $('#table').find(`[data-piece='${jsonResponse.winner}']`).addClass('winner-' + jsonResponse.winner);
-            return;
-        }
-        
-        if (jsonResponse.nextMove.length) {
+        if (jsonResponse.nextMove && jsonResponse.nextMove.length) {
             var move = jsonResponse.nextMove;
             var boardMovement = $('#table').find(`[data-x='${move[0]}']` + `[data-y='${move[1]}']`);
             boardMovement.data('piece', move[2]);
             boardMovement.attr('data-piece', move[2]);
             boardMovement.html(move[2]);
         }
+
+        if (jsonResponse.winner) {
+            winner = true;
+            $('#table').find(`[data-piece='${jsonResponse.winner}']`).addClass('winner-' + jsonResponse.winner);
+            return;
+        }
         
         if (jsonResponse.tied) {
-
+            tied = true;
+            alert('The game is tied');
+            window.location.reload();
         }
     }).fail(function () {
         alert('Sorry, we did can\'t play our move, try reset the game.' );

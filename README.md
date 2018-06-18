@@ -77,21 +77,9 @@ POST http://localhost:8000/api/move
 
 Response 200 OK
 {
-    "playerUnit": "X",
-    "boardState": [
-        ["X", "X", "O"],
-        ["X", "O", "O"],
-        ["X", "O", "X"]
-    ],
-    "nextMove": [],
-    "winner": {
-        "unit": "X",
-        "moves": [
-            [0, 0],
-            [0, 1],
-            [0, 2]
-        ]
-    }
+    "nextMove": [0, 1, 'O'],
+    "winner": "X",
+    "tied": false
 }
 ```
 

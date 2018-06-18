@@ -26,18 +26,24 @@ class ApiController extends Controller
      * @Route("/move", defaults={"_format": "json"})
      * @Method("POST")
      *
+     * @param MoveInterface $moveService
      * @param Request $request
      *
      * @return JsonResponse
      */
-    public function moveAction(MoveInterface $move, Request $request): JsonResponse
+    public function moveAction(MoveInterface $moveService, Request $request): JsonResponse
     {
         $actualGame = json_decode($request->getContent(), true);
 
         $validator = new BoardValidator();        
         $validator->isValid($actualGame);
 
-        $gameStatus = new GameStatus($actualGame['boardState'], $actualGame['playerUnit']);
+        return $this->verifyGameStatus($moveService, $actualGame['boardState'], $actualGame['playerUnit']);    
+    }
+
+    private function verifyGameStatus(MoveInterface $moveService, array $board, string $playerUnit): JsonResponse
+    {
+        $gameStatus = new GameStatus($board);
 
         if (!empty($gameStatus->getWinner()) || $gameStatus->isTied()) {
             $response['winner'] = $gameStatus->getWinner();
@@ -45,15 +51,15 @@ class ApiController extends Controller
             return new JsonResponse($response, 200);
         }
 
-        $move = $move->makeMove($actualGame['boardState'], $actualGame['playerUnit']);
+        $computerMove = $moveService->makeMove($board, $playerUnit);
         
-        if (!empty($move[1])) {
-            $actualGame['boardState'][$move[0]][$move[1]] = $move[2];
+        if (!empty($computerMove[1])) {
+            $board[$computerMove[0]][$computerMove[1]] = $computerMove[2];
         }
 
-        $gameStatus = new GameStatus($actualGame['boardState'], $actualGame['playerUnit']);        
+        $gameStatus = new GameStatus($board);
         $response = [
-            'nextMove' => $move,
+            'nextMove' => $computerMove,
             'winner' => $gameStatus->getWinner(),
             'tied' => $gameStatus->isTied()
         ];

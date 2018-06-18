@@ -14,25 +14,26 @@ use Hmarinjr\TicTacToe\Service\MoveInterface;
  */
 class ApiControllerTest extends WebTestCase
 {
+    
     /**
      * @test
-     * @dataProvider validRequestProvider
-     *
-     * @param array $requestContent
+     * @dataProvider validWithFreeMovesProvider
+     * 
+     * @param array $validRequestContent
      */
-    public function apiController(array $requestContent)
+    public function makeWithFreeMovesWillReturnWinnerTiedAndNextMove(array $validRequestContent): void
     {
-        $request = $this->createMock("Symfony\Component\HttpFoundation\Request");
-        $container = $this->createMock("Symfony\Component\DependencyInjection\ContainerInterface");
-        $service = $this->createMock(MoveInterface::class);
+        $requestContent = json_encode($validRequestContent);
 
-        $request->expects($this->once())
-            ->method('getContent')
-            ->willReturn(json_encode($requestContent));
+        $client = static::createClient();
+        $client->request('POST', '/api/move', [], [], [], $requestContent);
+        $this->assertSame(200, $client->getResponse()->getStatusCode());
+        $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
 
-        $controller = new ApiController();
-        $controller->setContainer($container);
-        $controller->moveAction($service, $request);
+        $contentBody = json_decode($client->getResponse()->getContent(), true);
+        $this->assertArrayHasKey('nextMove', $contentBody);
+        $this->assertArrayHasKey('winner', $contentBody);
+        $this->assertArrayHasKey('tied', $contentBody);
     }
 
     /**
@@ -41,7 +42,7 @@ class ApiControllerTest extends WebTestCase
      * 
      * @param array $validRequestContent
      */
-    public function makeMove(array $validRequestContent): void
+    public function makeWithouFreeMoveWillReturnWinnerAndTiedResult(array $validRequestContent): void
     {
         $requestContent = json_encode($validRequestContent);
 
@@ -52,6 +53,7 @@ class ApiControllerTest extends WebTestCase
 
         $contentBody = json_decode($client->getResponse()->getContent(), true);
         $this->assertArrayHasKey('winner', $contentBody);
+        $this->assertArrayHasKey('tied', $contentBody);
     }
 
     public function validRequestProvider(): array
@@ -64,32 +66,83 @@ class ApiControllerTest extends WebTestCase
                         ["X", "O", "O"],
                         ["X", "O", "O"],
                         ["O", "X", "X"],
-                    ],
-                ],
+                    ]
+                ]
+            ],
+            [
                 [
                     "playerUnit" => "O",
                     "boardState" => [
                         ["X", "O", "O"],
                         ["X", "O", "O"],
                         ["O", "X", "X"],
-                    ],
-                ],
+                    ]
+                ]
+            ],
+            [
                 [
                     "playerUnit" => "X",
                     "boardState" => [
                         ["X", "O", "O"],
                         ["X", "O", "O"],
                         ["O", "X", "X"],
-                    ],
-                ],[
+                    ]
+                ]
+            ],[
+                [
                     "playerUnit" => "X",
                     "boardState" => [
                         ["X", "O", "X"],
                         ["O", "X", "O"],
                         ["X", "O", "X"],
-                    ],
-                ],
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    public function validWithFreeMovesProvider(): array
+    {
+        return [
+            [
+                [
+                    "playerUnit" => "X",
+                    "boardState" => [
+                        ["X", "O", ""],
+                        ["X", "O", "O"],
+                        ["O", "X", "X"],
+                    ]
+                ]
             ],
+            [
+                [
+                    "playerUnit" => "O",
+                    "boardState" => [
+                        ["X", "O", ""],
+                        ["X", "O", ""],
+                        ["O", "X", "X"],
+                    ]
+                ]
+            ],
+            [
+                [
+                    "playerUnit" => "X",
+                    "boardState" => [
+                        ["X", "O", ""],
+                        ["X", "O", "O"],
+                        ["O", "X", "X"],
+                    ]
+                ]
+            ],[
+                [
+                    "playerUnit" => "X",
+                    "boardState" => [
+                        ["X", "O", "X"],
+                        ["O", "", "O"],
+                        ["X", "O", "X"],
+                    ]
+                ]
+            ]
         ];
     }
 }

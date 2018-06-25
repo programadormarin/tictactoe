@@ -17,13 +17,15 @@ class GameStatus
      * GameStatus constructor.
      *
      * @param array $board
-     * @param string $playerUnit
      */
     public function __construct(array $board)
     {
         $this->board = $board;
     }
 
+    /**
+     * @return string 
+     */    
     public function getWinner(): string
     {
         $winnerMoves = WinnerMoves::getWinnerMoves();
@@ -55,6 +57,9 @@ class GameStatus
         return '';
     } 
 
+    /**
+     * @return boolean
+     */    
     public function isTied()
     {
         if ($this->getWinner()) {

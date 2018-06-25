@@ -33,12 +33,26 @@ class ApiController extends Controller
      */
     public function moveAction(MoveInterface $moveService, Request $request): JsonResponse
     {
-        $actualGame = json_decode($request->getContent(), true);
+        $actualGame = json_decode($this->getStringRequestContent($request), true);
 
         $validator = new BoardValidator();        
         $validator->isValid($actualGame);
 
         return $this->verifyGameStatus($moveService, $actualGame['boardState'], $actualGame['playerUnit']);    
+    }
+    
+    /** 
+     * @return string
+     */
+    private function getStringRequestContent(Request $request): string
+    {
+        $requestContent = $request->getContent();
+        
+        if (!is_string($request->getContent())) {
+            throw new \InvalidArgumentException('The content is invalid!');
+        }
+
+        return $requestContent;
     }
 
     private function verifyGameStatus(MoveInterface $moveService, array $board, string $playerUnit): JsonResponse

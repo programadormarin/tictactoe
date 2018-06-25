@@ -10,12 +10,12 @@ use Hmarinjr\TicTacToe\Exception\InvalidBoardException;
 class BoardValidator
 {
     /**
-     * @param string $content
+     * @param array $content
      *
-     * @return bool
+     * @return void
      * @throws InvalidBoardException
      */
-    public function isValid($content): void
+    public function isValid(array $content): void
     {
         if (empty($content)) {
             throw new InvalidBoardException("Invalid request. Empty body or invalid json.");
@@ -38,7 +38,7 @@ class BoardValidator
             $invalidValues = array_filter($line, function($move) {
                 return ($move != 'O' && $move != 'X' && !empty($move));
             });
-    
+
             if ($invalidValues) {
                 throw new InvalidBoardException("The game must contain only 'X', 'O' or empty moves.");
             }

@@ -8,9 +8,9 @@ namespace Hmarinjr\TicTacToe\Exception;
 class InvalidBoardException extends \Exception
 {
     /**
-     * @var $message
+     * @var string $message
      */
-    public function __construct($message)
+    public function __construct(string $message)
     {
         parent::__construct($message, 412);
     }

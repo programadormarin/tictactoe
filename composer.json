@@ -19,6 +19,7 @@
     },
     "require-dev": {
         "codeclimate/php-test-reporter": "dev-master",
+        "phpstan/phpstan": "^0.10.0",
         "symfony/browser-kit": "^4.1",
         "symfony/dotenv": "^4.1",
         "symfony/phpunit-bridge": "^4.1",

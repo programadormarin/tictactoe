@@ -7,7 +7,7 @@ Encore
     // the public path used by the web server to access the previous directory
     .setPublicPath('/assets')
 
-    // will create public/build/app.js and public/build/app.css
+    // will create public/assets/app.js and public/assets/app.css
     .addEntry('app', './assets/js/app.js')
     
     // allow legacy applications to use $/jQuery as a global variable

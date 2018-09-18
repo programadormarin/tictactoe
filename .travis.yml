@@ -21,7 +21,7 @@ before_script:
   - ./cc-test-reporter before-build
 
 script: ./bin/phpunit
-script: ./vendor/bin/phpstan analyse --level=5 src tests
+script: ./vendor/bin/phpstan analyse --level=4 src tests
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

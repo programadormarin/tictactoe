@@ -2,8 +2,7 @@
 
 namespace Hmarinjr\TicTacToe\Service;
 
-
-use Symfony\Bundle\FrameworkBundle\Tests\Functional\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
  * MoveServiceTest

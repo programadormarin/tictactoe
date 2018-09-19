@@ -2,9 +2,9 @@
 
 namespace Hmarinjr\TicTacToe\Util;
 
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Hmarinjr\TicTacToe\Controller\ApiController;
 use Hmarinjr\TicTacToe\Service\MoveInterface;
-use Symfony\Bundle\FrameworkBundle\Tests\Functional\WebTestCase;
 
 /**
  * @package Hmarinjr\TicTacToe\Util

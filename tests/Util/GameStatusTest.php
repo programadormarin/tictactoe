@@ -2,7 +2,7 @@
 
 namespace Hmarinjr\TicTacToe\Util;
 
-use Symfony\Bundle\FrameworkBundle\Tests\Functional\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
  * @package Hmarinjr\TicTacToe\Util

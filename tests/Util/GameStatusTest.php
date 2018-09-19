@@ -2,7 +2,7 @@
 
 namespace Hmarinjr\TicTacToe\Util;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Tests\Functional\WebTestCase;
 
 /**
  * @package Hmarinjr\TicTacToe\Util
@@ -66,7 +66,7 @@ class GameStatusTest extends WebTestCase
     public function winnerBoardsProvider(): array
     {
         return [
-            
+
             [
                 [
                     ["O", "O", "O"],
@@ -115,7 +115,7 @@ class GameStatusTest extends WebTestCase
                 ],
                 'X'
             ]
-            
+
         ];
     }
 
@@ -164,7 +164,7 @@ class GameStatusTest extends WebTestCase
                     ["O", "O", "X"]
                 ]
             ]
-            
+
         ];
     }
 
@@ -213,7 +213,7 @@ class GameStatusTest extends WebTestCase
                     ["O", "O", "X"]
                 ]
             ]
-            
+
         ];
     }
 }

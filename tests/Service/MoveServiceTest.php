@@ -2,7 +2,8 @@
 
 namespace Hmarinjr\TicTacToe\Service;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+use Symfony\Bundle\FrameworkBundle\Tests\Functional\WebTestCase;
 
 /**
  * MoveServiceTest
@@ -39,7 +40,7 @@ class MoveServiceTest extends WebTestCase
     public function validRequestProvider(): array
     {
         return [
-            
+
             [
                 [
                     ["O", "O", "O"],
@@ -88,14 +89,14 @@ class MoveServiceTest extends WebTestCase
                 ],
                 'X'
             ]
-            
+
         ];
     }
 
     public function fullBoardProvider(): array
     {
         return [
-            
+
             [
                 [
                     ["O", "O", "O"],
@@ -144,7 +145,7 @@ class MoveServiceTest extends WebTestCase
                 ],
                 'X'
             ]
-            
+
         ];
     }
 }

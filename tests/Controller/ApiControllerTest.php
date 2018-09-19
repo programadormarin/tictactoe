@@ -2,10 +2,9 @@
 
 namespace Hmarinjr\TicTacToe\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Hmarinjr\TicTacToe\Controller\ApiController;
-use Hmarinjr\TicTacToe\Exception\InvalidBoardtException;
 use Hmarinjr\TicTacToe\Service\MoveInterface;
+use Symfony\Bundle\FrameworkBundle\Tests\Functional\WebTestCase;
 
 /**
  * @package Hmarinjr\TicTacToe\Controller
@@ -14,11 +13,11 @@ use Hmarinjr\TicTacToe\Service\MoveInterface;
  */
 class ApiControllerTest extends WebTestCase
 {
-    
+
     /**
      * @test
      * @dataProvider validWithFreeMovesProvider
-     * 
+     *
      * @param array $validRequestContent
      */
     public function makeWithFreeMovesWillReturnWinnerTiedAndNextMove(array $validRequestContent): void
@@ -39,7 +38,7 @@ class ApiControllerTest extends WebTestCase
     /**
      * @test
      * @dataProvider validRequestProvider
-     * 
+     *
      * @param array $validRequestContent
      */
     public function makeWithouFreeMoveWillReturnWinnerAndTiedResult(array $validRequestContent): void

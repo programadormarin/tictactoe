@@ -15,7 +15,7 @@
         "build": "encore production"
     },
     "dependencies": {
-        "bootstrap": "^4.1.1",
+        "bootstrap": "^4.1",
         "popper.js": "^1.14.3"
     }
 }

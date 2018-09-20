@@ -2,8 +2,7 @@
 
 namespace Hmarinjr\TicTacToe\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,8 +22,7 @@ use Hmarinjr\TicTacToe\Util\WinnerMoves;
 class ApiController extends Controller
 {
     /**
-     * @Route("/move", defaults={"_format": "json"})
-     * @Method("POST")
+     * @Route("/move", defaults={"_format": "json"}), methods={"POST"})
      *
      * @param MoveInterface $moveService
      * @param Request $request
@@ -35,19 +33,19 @@ class ApiController extends Controller
     {
         $actualGame = json_decode($this->getStringRequestContent($request), true);
 
-        $validator = new BoardValidator();        
+        $validator = new BoardValidator();
         $validator->isValid($actualGame);
 
-        return $this->verifyGameStatus($moveService, $actualGame['boardState'], $actualGame['playerUnit']);    
+        return $this->verifyGameStatus($moveService, $actualGame['boardState'], $actualGame['playerUnit']);
     }
-    
-    /** 
+
+    /**
      * @return string
      */
     private function getStringRequestContent(Request $request): string
     {
         $requestContent = $request->getContent();
-        
+
         if (!is_string($request->getContent())) {
             throw new \InvalidArgumentException('The content is invalid!');
         }
@@ -66,7 +64,7 @@ class ApiController extends Controller
         }
 
         $computerMove = $moveService->makeMove($board, $playerUnit);
-        
+
         if (!empty($computerMove[1])) {
             $board[$computerMove[0]][$computerMove[1]] = $computerMove[2];
         }

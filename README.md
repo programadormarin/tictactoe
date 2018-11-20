@@ -1,6 +1,7 @@
 Tic Tac Toe Game
 ==========================
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9b9c6d3126a24e32ba213c5121bd4cfe)](https://app.codacy.com/app/programador.marin/tictactoe?utm_source=github.com&utm_medium=referral&utm_content=programadormarin/tictactoe&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/programadormarin/tictactoe.svg?branch=master)](https://travis-ci.org/programadormarin/tictactoe)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e75b4c5401873f2f87f0/maintainability)](https://codeclimate.com/github/programadormarin/tictactoe/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/e75b4c5401873f2f87f0/test_coverage)](https://codeclimate.com/github/programadormarin/tictactoe/test_coverage)

@@ -3,7 +3,10 @@ version: '3.5'
 services:
   php:
     container_name: php
-    build: .
+    build:
+      context: .
+      dockerfile: ./docker/php-fpm/Dockerfile
+      target: development
     volumes:
       - .:/var/www/html
     expose:
@@ -31,7 +34,7 @@ services:
     container_name: node
     build:
       context: .
-      dockerfile: Node.Dockerfile
+      dockerfile: ./docker/node/Dockerfile
     volumes:
       - .:/gb:rw
     working_dir: /gb

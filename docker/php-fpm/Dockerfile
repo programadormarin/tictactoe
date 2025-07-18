@@ -1,20 +1,21 @@
-FROM php:7.2.6-fpm-alpine as development
+FROM php:8.4-fpm-alpine as development
 
 RUN apk --update add --no-cache --virtual .build-deps $PHPIZE_DEPS zlib-dev \
-    && pecl install xdebug-2.6.1 \
+    && pecl install xdebug \
     && docker-php-ext-install zip \
+    && docker-php-ext-enable xdebug \
     && apk del .build-deps
 
 # Need to install composer, otherwise `composer install` fails during build because of missing PHP extensions.
-COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
-FROM php:7.2.6-fpm-alpine as production
+FROM php:8.4-fpm-alpine as production
 
-COPY --from=dev /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
-COPY --from=dev /usr/lib /usr/lib
-COPY --from=dev /usr/local/lib /usr/local/lib
+COPY --from=development /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
+COPY --from=development /usr/lib /usr/lib
+COPY --from=development /usr/local/lib /usr/local/lib
 
 COPY . /app
 

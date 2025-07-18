@@ -2,8 +2,8 @@
 
 namespace Hmarinjr\TicTacToe\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -15,20 +15,13 @@ use Hmarinjr\TicTacToe\Util\WinnerMoves;
 /**
  * Class ApiController
  * @package Hmarinjr\TicTacToe\Controller
- * @Route("/api")
  *
  * @author Hermenegildo Marin Júnior <hmarinjr@gmail.com>
  */
-class ApiController extends Controller
+#[Route('/api')]
+class ApiController extends AbstractController
 {
-    /**
-     * @Route("/move", defaults={"_format": "json"}), methods={"POST"})
-     *
-     * @param MoveInterface $moveService
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
+    #[Route('/move', defaults: ['_format' => 'json'], methods: ['POST'])]
     public function moveAction(MoveInterface $moveService, Request $request): JsonResponse
     {
         $actualGame = json_decode($this->getStringRequestContent($request), true);

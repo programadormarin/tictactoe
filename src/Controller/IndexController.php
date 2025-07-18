@@ -2,8 +2,8 @@
 
 namespace Hmarinjr\TicTacToe\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -12,12 +12,9 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @author Hermenegildo Marin Júnior <hmarinjr@gmail.com>
  */
-class IndexController extends Controller
+class IndexController extends AbstractController
 {
-    /**
-     * @Route("/", name="index"), methods={"GET"})
-     * @return Response
-     */
+    #[Route('/', name: 'index', methods: ['GET'])]
     public function indexAction(): Response
     {
         return $this->render('home.html.twig');
